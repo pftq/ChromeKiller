@@ -18,13 +18,13 @@ namespace ChromeKiller
 
                     if (chromeProcesses.Length > 0)
                     {
-                        Console.WriteLine($"[{DateTime.Now}] Found {chromeProcesses.Length} chrome process(es). Killing...");
-                    }
-
-                    foreach (Process proc in chromeProcesses)
-                    {
-                        try { proc.Kill(); } catch { }
-                        proc.Dispose();
+                        Console.WriteLine($"[{DateTime.Now}] Found {chromeProcesses.Length} chrome.exe process(es):");
+                        foreach (Process proc in chromeProcesses)
+                        {
+                            Console.WriteLine($"  - PID {proc.Id}: {proc.ProcessName}");
+                            try { proc.Kill(); } catch { }
+                            proc.Dispose();
+                        }
                     }
                 }
                 catch { }
